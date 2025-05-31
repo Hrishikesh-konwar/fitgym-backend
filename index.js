@@ -21,11 +21,15 @@ const app = express();
 app.use(express.json());
 
 const json = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-if (!json) throw new Error("Missing GOOGLE_SERVICE_ACCOUNT_JSON");
-const serviceAccountPath = path.join("/tmp", "service-account.json");
+if (!json) throw new Error('Missing GOOGLE_SERVICE_ACCOUNT_JSON');
+
+const serviceAccountPath = path.join('/tmp', 'service-account.json');
+
 if (!fs.existsSync(serviceAccountPath)) {
-  fs.writeFileSync(serviceAccountPath, json);
+  const fixedJson = json.replace(/\\n/g, '\n');
+  fs.writeFileSync(serviceAccountPath, fixedJson);
 }
+
 process.env.GOOGLE_APPLICATION_CREDENTIALS = serviceAccountPath;
 
 app.use(
