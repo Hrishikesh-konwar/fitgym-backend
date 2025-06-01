@@ -19,11 +19,11 @@ const credentials = {
   universe_domain: "googleapis.com"
 };
 
+
 const bigquery = new BigQuery({
   projectId: credentials.project_id,
   credentials,
 });
-
 const createMember = async (req, res) => {
   const { id: gym_id, name: gym_name } = req.gym;
   const { name, email_id, phone, joined_at } = req.body;

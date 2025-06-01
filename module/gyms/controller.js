@@ -4,9 +4,7 @@ import { BigQuery } from "@google-cloud/bigquery";
 
 import { generate6DigitNumber, getHashedPassword } from "../utils.js";
 
-// const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
-
-const GOOGLE_KPRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqUCbxh8c6zY9z\n70tSd2SR4Z8nlRqDwPH6zpbKVbWFZDfy5jAPtl/caoUhi04F8wU6x4Nes8HyqJeR\ndVGN8ptK28utHFksfGWCEkRkcMOirCqRo424QQWvfnehQeQmDT5JyJ8O5OCcBgAt\nCPL0MDulSc0JEPRXeBzCfp66mpMRiCaZvdgwXmtgUHRE1U91eBiMXMzzCURAcMIm\nWCdSM40U6JnZndYF5dJhsHge7fN7YZzE54bfw6vIyuEOFTN+Pi9DxFf2VIzCab2R\nymjqyOW033qE2J0yfHYDADCHG17UhJnh86stcLxzoXddYXcCwlJ4hudVr83srn0R\ng7YsLBDdAgMBAAECggEAE01/yG6i4DGFkXZ80zUobxdC/k26IlYnJs2szfReXSax\nZ6R6rIE3RqhE+/sJpgd334RWyZA2il3cxdXl3yBwxNB5+l4E5lOX/qC64yZbqe94\n6KZAjPJDpnL/NIXfCYgFOAAWtO2wXkaY1QHXZWElFXPymtUy2EoK+mk27L/RrNIR\no1upJTovXYo7ACNynD8OfgfQG6OhHTZI8HdU73F1niyxtzGB+Bsr3YT29Vp4i1Sl\n93KJPlYbsVSB97CNLtYiXUtrJxOWaB41hAORFnyApQqKY+I8Hx+4ZMOfsbXdNZuY\niF+EdgUfwmSFtnv1U+VG+H/JZ42FKJS9zwfQ/MBZ2QKBgQDq097wu9FRKgMaLVDn\nG24ljeSKUcFGFPdu7+ERDm4gShkqVd9uXudWRs2ExaUi/jYKDPSRFbpeI11rgkRe\nXOUFX6cWRrtQ+2b/9/Jk+uan7ZD4hQ+0GRJDxPSLGCsdMU+1SMEveh7ydedDTw8s\nLrs++rVQGbxLlxEvdC5wArW9dQKBgQC5qzOTpeTohcakiG1vvxgY/TOF4dXThkAi\nGX8Pe5meDkqTUcLlovCG/U//7SBAkYhX9d/k6giuktFoM4YDPXpzQvqhHK6GaePU\nR7OQlGanFf5IkLURIrnWIl6FBArOXErREysYmkk9mI/VSxHA+Mxt6RDl95mzzlL9\ntutYHbcQyQKBgHPld32GpMsTGg7cWLaHIjikrCvcJ7CH/oqhF4qMfauwBnWPhkN5\n0WESdrJVvafkoRUaycWlXKLDf4Lk+ws7e8jIKbXj2OUh/vbMD7To49fzdv5A5bw0\nN4B8/1h66CRzRuyo6Lee5REzQZ1Fsq5SrhVqNPxAh18jQtcR1y1vGPVVAoGASZgD\nrJ2QG16TOzpcbnPHYHhUiNfYQqyvFRUYGRH79PtjMfuxjgZE4qzbnezm4NEOwxbR\ndVISuOe3G1942iXvOGqvH1dYEi08wjLdiQxZmBcOoMLDEpS6Jpee8YiFpABPI4o+\nhdT5/PFQ6dGEqwGzPkmoig7XnL7GhIyRwm6c1okCgYEAqXSsSs+bCKA0XsGS+pNz\nT3ATQ81dGfO2dbg5/E4Uxli4LxkmdXlhxJ3N1/XvSGPU/KB7JD25G/q27Ce0Csp8\nrsOnSOd0Jx1oyu618oWsYwwJWgxRrXm4I1BBzWosC16k6MOjvPqbVJWu/a+4WXE9\nb14/OoRIP6UxzbvW1wGAKOs=\n-----END PRIVATE KEY-----\n"
+dotenv.config();
 
 const credentials = {
   type: "service_account",
@@ -22,13 +20,13 @@ const credentials = {
   universe_domain: "googleapis.com"
 };
 
+
 const bigquery = new BigQuery({
   projectId: credentials.project_id,
   credentials,
 });
 
 
-dotenv.config();
 const createGym = async (req, res) => {
   try {
     const { name, phone, email_id, password } = req.body;
