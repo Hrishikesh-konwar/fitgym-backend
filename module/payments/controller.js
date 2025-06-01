@@ -3,9 +3,14 @@ import { BigQuery } from "@google-cloud/bigquery";
 
 import { generate6DigitNumber } from "../utils.js";
 
-const bigquery = new BigQuery();
-
 dotenv.config();
+
+const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+
+const bigquery = new BigQuery({
+  projectId: credentials.project_id,
+  credentials,
+});
 const createPayments = async (req, res) => {
   try {
     const { member_id, payment_type, payment_id, paid_at, paid_till, amount } =
