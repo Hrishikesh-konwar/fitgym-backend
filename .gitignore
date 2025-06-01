@@ -45,3 +45,6 @@ Thumbs.db
 # SST
 .sst/
 .stacks/
+
+
+service-account.json

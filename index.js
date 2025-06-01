@@ -20,10 +20,6 @@ const port = process.env.PORT;
 const app = express();
 app.use(express.json());
 
-const json = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-if (!json) throw new Error('Missing GOOGLE_SERVICE_ACCOUNT_JSON');
-
-
 app.use(
   cors({
     origin: process.env.FRONTEND_BASE_URL,

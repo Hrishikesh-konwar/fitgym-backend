@@ -5,12 +5,8 @@ import { generate6DigitNumber } from "../utils.js";
 
 dotenv.config();
 
-const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+const bigquery = new BigQuery(); 
 
-const bigquery = new BigQuery({
-  projectId: credentials.project_id,
-  credentials,
-});
 const createMember = async (req, res) => {
   const { id: gym_id, name: gym_name } = req.gym;
   const { name, email_id, phone, joined_at } = req.body;
