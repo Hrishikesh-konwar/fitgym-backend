@@ -5,7 +5,20 @@ import { generate6DigitNumber } from "../utils.js";
 
 dotenv.config();
 
-const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+const credentials = {
+  type: "service_account",
+  project_id: process.env.GOOGLE_PROJECT_ID,
+  private_key_id: "e86a45945b7f1c55b3962f8fe80e6ec4cc3d2b3a",
+  private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.GOOGLE_CLIENT_EMAIL,
+  client_id: "106099264219896202590",
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${encodeURIComponent(process.env.GOOGLE_CLIENT_EMAIL)}`,
+  universe_domain: "googleapis.com"
+};
+
 const bigquery = new BigQuery({
   projectId: credentials.project_id,
   credentials,
