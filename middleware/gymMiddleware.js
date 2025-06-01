@@ -22,6 +22,9 @@ const credentials = {
   universe_domain: "googleapis.com"
 };
 
+
+console.log("credentials", credentials)
+
 const bigquery = new BigQuery({
   projectId: credentials.project_id,
   credentials,
