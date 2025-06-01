@@ -30,6 +30,8 @@ if (!fs.existsSync(serviceAccountPath)) {
   fs.writeFileSync(serviceAccountPath, fixedJson);
 }
 
+
+
 process.env.GOOGLE_APPLICATION_CREDENTIALS = serviceAccountPath;
 
 app.use(
