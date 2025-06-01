@@ -5,7 +5,12 @@ import { generate6DigitNumber } from "../utils.js";
 
 dotenv.config();
 
-const bigquery = new BigQuery(); 
+const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+const bigquery = new BigQuery({
+  projectId: credentials.project_id,
+  credentials,
+});
+
 
 const createPayments = async (req, res) => {
   try {

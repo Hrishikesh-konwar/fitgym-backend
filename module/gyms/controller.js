@@ -4,7 +4,12 @@ import { BigQuery } from "@google-cloud/bigquery";
 
 import { generate6DigitNumber, getHashedPassword } from "../utils.js";
 
-const bigquery = new BigQuery(); 
+const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+const bigquery = new BigQuery({
+  projectId: credentials.project_id,
+  credentials,
+});
+
 
 
 dotenv.config();
